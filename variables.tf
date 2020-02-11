@@ -185,6 +185,7 @@ data "template_file" "webserver_provisioner" {
     WEBSERVER_PORT = 8080
     QUEUE_NAME = "${var.cluster_name}-queue"
     AIRFLOW_ROLE = "WEBSERVER"
+    QUEUE_URL = aws_sqs_queue.airflow_queue.id
     DAG_GIT_REPOSITORY_URL = var.dag_git_repository_url
     DAG_GIT_REPOSITORY_DIRECTORY = var.dag_git_repository_directory
     DAG_GIT_REPOSITORY_BRANCH = var.dag_git_repository_branch
@@ -214,6 +215,7 @@ data "template_file" "scheduler_provisioner" {
     WEBSERVER_PORT = 8080
     QUEUE_NAME = "${var.cluster_name}-queue"
     AIRFLOW_ROLE = "SCHEDULER"
+    QUEUE_URL = aws_sqs_queue.airflow_queue.id
     DAG_GIT_REPOSITORY_URL = var.dag_git_repository_url
     DAG_GIT_REPOSITORY_DIRECTORY = var.dag_git_repository_directory
     DAG_GIT_REPOSITORY_BRANCH = var.dag_git_repository_branch
@@ -243,6 +245,7 @@ data "template_file" "worker_provisioner" {
     WEBSERVER_PORT = 8080
     QUEUE_NAME = "${var.cluster_name}-queue"
     AIRFLOW_ROLE = "WORKER"
+    QUEUE_URL = aws_sqs_queue.airflow_queue.id
     DAG_GIT_REPOSITORY_URL = var.dag_git_repository_url
     DAG_GIT_REPOSITORY_DIRECTORY = var.dag_git_repository_directory
     DAG_GIT_REPOSITORY_BRANCH = var.dag_git_repository_branch
